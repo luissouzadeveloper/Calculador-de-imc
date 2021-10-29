@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de peso</title>
+    <style>
+        body{
+            background-color: #f5af2d;
+            color: white;
+            font: normal 1.7em Arial;
+            text-align: center;
+        }
+
+        main{
+            background-color: white;
+            border-radius: 15px;
+            max-width: 100%;
+            margin: auto;
+            padding: 5px;
+        }
+
+        div{
+            margin: 20px;
+            color: black;
+        }
+
+        .input{
+            margin: 10px;
+        }
+
+        .output{
+            margin: 10px;
+        }
+
+        input{
+            width: 100px;
+        }
+
+        footer > p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Verificador de IMC</h1>
+    </header>   
+    <main>
+        <div class="input">
+            <p>Informe seu peso: <input type="number" name="" id="peso" max="250" min="2"> kg</p>
+            <p>Informe sua altura: <input type="number" name="" id="altura"> m</p>
+            <input type="button" value="Calcular" onclick="calcular()">
+        </div>
+
+        <div id="output">
+            Saída de dados
+        </div>
+    </main>
+    <footer>
+        <p>&copy;JavaScrpit</p>
+    </footer>
+
+    <script>
+        function calcular(){
+            let cxpeso = document.getElementById('peso');
+            let cxaltura = document.getElementById('altura');
+            let saida = document.getElementById('output');
+            let peso = Number(cxpeso.value);
+            let altura = Number(cxaltura.value)
+
+            let imc = peso / (altura**2)
+            saida.innerHTML = `<p>Seu imc é de ${imc.toFixed(2)}</p>`
+
+            if (peso == 0 && altura == 0) {
+                alert("Não é possível calcular sem os dados! Insira")
+            } else 
+                if (imc > 0 && imc < 18.5) {
+                saida.innerHTML += `Você está abaixo do peso`
+                saida.style.color = 'red'
+            } else 
+                if (imc < 24.9) {
+                    saida.innerHTML += `Seu peso está ideal`
+                    saida.style.color = 'green'  
+                } else 
+                    if (imc < 29.9) {
+                        saida.innerHTML += `Você está acima do peso`
+                        saida.style.color = 'red'
+                    } else 
+                        if (imc < 34.9) {
+                            saida.innerHTML += `Você está com obesidade`
+                            saida.style.color = 'red'
+                        } else 
+                            if(imc < 39.9){
+                                saida.innerHTML += `Você está com obesidade mórbida`
+                                saida.style.color = 'red'
+                            } else {
+                                saida.innerHTML += `Você está com obesidade severa`
+                                saida.style.color = 'red'
+                            }
+        }
+    </script>
+</body>
+</html>
